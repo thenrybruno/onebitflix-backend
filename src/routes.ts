@@ -6,6 +6,7 @@ import { authController } from './controllers/authController'
 import { ensureAuth, ensureAuthViaQuery } from './middlewares/auth'
 import { favoritesController } from './controllers/favoritesController'
 import { likesController } from './controllers/likesController'
+import { usersController } from './controllers/usersController'
 
 //Atribuindo a função Router do express na constante router, essa função é a responsável de definiar as rotas
 const router = express.Router()
@@ -38,5 +39,8 @@ router.delete('/favorites/:id', ensureAuth, favoritesController.delete)
 //Rotas dos cursos curtidos
 router.post('/likes', ensureAuth, likesController.save)
 router.delete('/likes/:id', ensureAuth, likesController.delete)
+
+//Rotas relacionadas aos usuários
+router.get('/users/current/watching', ensureAuth, usersController.watching)
 
 export { router }
